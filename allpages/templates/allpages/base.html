@@ -1,0 +1,54 @@
+{% load static %}
+<html>
+<head>
+	{% block headcontent %}
+
+ 	{% endblock headcontent %}
+	<title>
+		{% if title %}
+			{{title}}
+		{% else %}
+			Welcome!!
+		{% endif%}
+	</title>
+	<!--bootstrap cdn-->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!--font awesome cdn-->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<!--Site-wide style sheet-->
+	<link rel="stylesheet" type="text/css" href="{% static 'allpages/css/stylesheet.css' %}">
+	<link rel="shortcut icon" href="{% static 'allpages/images/favicon.ico' %}">
+</head>
+<body>
+ 	<header>
+ 	<img src="{% static 'allpages/images/favicon.ico' %}" alt="" vspace="10">
+ 	
+ 	</header>
+ 	<nav>
+ 		<a href="{% url 'allpages-home' %}">Home</a>
+ 		<a href="{% url 'allpages-about' %}">About</a>
+ 		<a href="{% url 'allpages-privacy' %}">Privacy</a>
+ 		{% if request.user.is_superuser %}
+ 			<a href="{% url 'admin:index' %}">Admin</a>
+ 		{% endif %}
+ 	</nav>
+ 	<main>
+ 		{% if messages %}
+ 			{% for message in messages %}
+ 			<div class="flash {{message.tags}}">
+ 				{{message}}
+ 			</div>
+ 			{% endfor %}
+ 		{% endif %}
+ 		
+ 		{% block maincontent %}
+
+ 		{% endblock maincontent %}
+ 	</main>
+ 	<footer>
+ 		<a href="" class="fa fa-twitter" title="Twitter"></a>
+ 		<a href="" class="fa fa-linkedin" title="LinkedIn"></a>
+ 		<a href="" class="fa fa-facebook" title="Facebook"></a>
+ 	</footer>
+</body>
+</html>

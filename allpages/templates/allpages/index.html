@@ -1,0 +1,58 @@
+{% extends "allpages/base.html" %}
+{% block headcontent %}
+	<style>
+    	nav.button-links {
+        	position: static;
+        	text-align:left;
+    	}
+	    nav.button-links h2 {
+	        position: static;
+	        display: inline-block;
+	    }
+	    nav.button-links a {
+	        display: inline-block;
+	        /*background-color: #007bff;*/
+	        background-color: green;
+	        color: #fff;
+	        border: solid 1px gray;
+	        text-align: center;
+	        padding: .375rem .75rem;
+	        font-size: 1rem;
+	        line-height: 1.5;
+	        border-radius: .25rem;
+	        transition: background-color .25s ease-in-out, color .25s ease-in-out;
+	    }
+	    nav.button-links a:hover {
+	        background-color: #0DFFFC;
+	        color: navy;
+	    }
+	</style>
+{% endblock headcontent %}
+
+{% block maincontent %}
+	<h1 align="center">VidTut!</h1>
+	<!--p style="text-align: center;">It's tea time!!!</p-->
+	<nav class="button-links">
+		<h2>Programming Videos</h2><br>
+		<a href="{% url 'videos-thumbs' 1 %}">HTML/CSS</a>
+		<a href="{% url 'videos-thumbs' 2 %}">Javascript</a>
+		<a href="{% url 'videos-thumbs' 3 %}">Python</a>
+		<a href="{% url 'videos-thumbs' 4 %}">Django</a>
+		<a href="{% url 'videos-thumbs' 5 %}">Java</a>
+		<a href="{% url 'videos-thumbs' 6 %}">Asp.net</a>
+		<a href="{% url 'videos-thumbs' 7 %}">C#.net</a>
+		<a href="{% url 'videos-thumbs' 8 %}">PHP</a>
+		{% if request.user.is_superuser %}
+			<a href="{% url 'videos-list' %}">List</a>
+		{% endif %}
+	</nav><br><br>
+	<nav class="button-links">
+		<h2>Databases</h2><br>
+		<a href="{% url 'videos-thumbs' 9 %}">MySQL</a>
+		<a href="{% url 'videos-thumbs' 10 %}">MongoDB</a>
+		<a href="{% url 'videos-thumbs' 11 %}">PostgreSQL</a>
+		{% if request.user.is_superuser %}
+			<a href="{% url 'videos-list' %}">List</a>
+		{% endif %}
+	</nav><br><br>
+{% endblock maincontent %}
